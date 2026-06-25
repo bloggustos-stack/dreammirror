@@ -5,14 +5,12 @@ Parte din universul ONYR.WORLD / Archetype Academy
 import os
 import json
 import re
+import requests
 from flask import Flask, render_template, request, jsonify
-import google.generativeai as genai
 
 app = Flask(__name__)
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-if GEMINI_API_KEY:
-    genai.configure(api_key=GEMINI_API_KEY)
 
 MODELS_TO_TRY = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
 
@@ -77,6 +75,35 @@ def extract_json(text):
     return json.loads(text)
 
 
+def call_gemini(model_name, system_instruction, user_prompt, json_mode=False):
+    """Apel HTTP direct către API-ul Gemini, fără SDK greu."""
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={GEMINI_API_KEY}"
+
+    generation_config = {"temperature": 0.75}
+    if json_mode:
+        generation_config["responseMimeType"] = "application/json"
+
+    payload = {
+        "contents": [{"role": "user", "parts": [{"text": user_prompt}]}],
+        "systemInstruction": {"parts": [{"text": system_instruction}]},
+        "generationConfig": generation_config,
+    }
+
+    response = requests.post(url, json=payload, timeout=60)
+    response.raise_for_status()
+    data = response.json()
+
+    candidates = data.get("candidates", [])
+    if not candidates:
+        raise RuntimeError("Modelul Gemini nu a returnat niciun rezultat.")
+
+    parts = candidates[0].get("content", {}).get("parts", [])
+    if not parts:
+        raise RuntimeError("Răspunsul Gemini nu conține text.")
+
+    return parts[0].get("text", "")
+
+
 def generate_with_fallback(prompt, system_instruction, json_mode=False):
     """Încearcă mai multe modele Gemini în caz de eroare tranzitorie."""
     if not GEMINI_API_KEY:
@@ -85,17 +112,7 @@ def generate_with_fallback(prompt, system_instruction, json_mode=False):
     last_error = None
     for model_name in MODELS_TO_TRY:
         try:
-            generation_config = {"temperature": 0.75}
-            if json_mode:
-                generation_config["response_mime_type"] = "application/json"
-
-            model = genai.GenerativeModel(
-                model_name=model_name,
-                system_instruction=system_instruction,
-                generation_config=generation_config,
-            )
-            response = model.generate_content(prompt)
-            return response.text
+            return call_gemini(model_name, system_instruction, prompt, json_mode=json_mode)
         except Exception as e:
             last_error = e
             continue
