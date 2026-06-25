@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-MODELS_TO_TRY = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
+MODELS_TO_TRY = ["gemini-3.5-flash", "gemini-3.1-flash-lite", "gemini-flash-latest"]
 
 ANALYSIS_SCHEMA_HINT = """
 Răspunde STRICT cu un obiect JSON valid, fără text adițional înainte sau după, cu exact această structură:
@@ -68,11 +68,14 @@ Instrucțiuni de conversație:
 
 def extract_json(text):
     """Extrage JSON valid dintr-un răspuns care poate conține markdown fences."""
-    text = text.strip()
+    text = (text or "").strip()
     text = re.sub(r"^```json\s*", "", text)
     text = re.sub(r"^```\s*", "", text)
     text = re.sub(r"\s*```$", "", text)
-    return json.loads(text)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as e:
+        raise RuntimeError(f"Răspunsul modelului nu este JSON valid: {str(e)}. Conținut primit: {text[:300]}")
 
 
 def call_gemini(model_name, system_instruction, user_prompt, json_mode=False):
@@ -90,8 +93,20 @@ def call_gemini(model_name, system_instruction, user_prompt, json_mode=False):
     }
 
     response = requests.post(url, json=payload, timeout=60)
-    response.raise_for_status()
-    data = response.json()
+
+    if response.status_code != 200:
+        # Răspunsul poate fi JSON cu detalii de eroare sau HTML simplu
+        try:
+            err_data = response.json()
+            err_msg = err_data.get("error", {}).get("message", response.text[:200])
+        except Exception:
+            err_msg = response.text[:200]
+        raise RuntimeError(f"Model {model_name} a returnat {response.status_code}: {err_msg}")
+
+    try:
+        data = response.json()
+    except Exception:
+        raise RuntimeError(f"Model {model_name}: răspuns invalid (nu e JSON).")
 
     candidates = data.get("candidates", [])
     if not candidates:
