@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -269,12 +269,12 @@ footer .right{color:var(--gold);text-transform:uppercase;font-weight:700;letter-
   <div class="header-inner">
     <div class="brand">
       <h1>DreamMirror</h1>
-      <p>ONYR.WORLD — Sistem Analitic de Interpretare a Viselor</p>
+      <p>ONYR.WORLD — Analytical Dream Interpretation System</p>
     </div>
     <nav>
-      <button class="nav-btn active" data-section="new-dream">Înregistrează un Vis</button>
-      <button class="nav-btn" data-section="journal">Arhiva Jurnalului</button>
-      <button class="nav-btn" data-section="path">Drumul Alchimic</button>
+      <button class="nav-btn active" data-section="new-dream">Record a Dream</button>
+      <button class="nav-btn" data-section="journal">Journal Archive</button>
+      <button class="nav-btn" data-section="path">Alchemical Path</button>
     </nav>
   </div>
 </header>
@@ -284,57 +284,57 @@ footer .right{color:var(--gold);text-transform:uppercase;font-weight:700;letter-
   <!-- SECTION: NEW DREAM -->
   <section class="section active" id="section-new-dream">
     <div class="intro">
-      <span class="eyebrow">✨ Înțelepciunea Inconștientului Personal</span>
-      <h2>Descifrează-ți Visele</h2>
-      <p>Descrie visul tău cu cât mai multe detalii (decoruri, culori, senzații fizice sau cuvinte spuse). Analistul nostru, format în psihologia analitică a lui Carl Gustav Jung, te va ghida să explorezi semnificația lor arhetipală profundă.</p>
+      <span class="eyebrow">✨ Wisdom of the Personal Unconscious</span>
+      <h2>Decipher Your Dreams</h2>
+      <p>Describe your dream with as many details as you can recall (landscapes, colors, physical sensations, or spoken words). Our analyst, trained in Carl Gustav Jung's analytical psychology, will guide you to explore their deep archetypal significance.</p>
     </div>
 
     <div class="grid-12">
       <form class="card" id="dream-form">
-        <label class="field-label">Descrie narațiunea visului tău</label>
-        <textarea id="dream-text" placeholder="ex: Înotam într-un ocean adânc și cerul era violet. La un moment dat, o balenă gigantică cu aripi de pasăre a apărut din valuri și mi-a vorbit cu o înțelepciune profundă..."></textarea>
+        <label class="field-label">Describe your dream narrative</label>
+        <textarea id="dream-text" placeholder="e.g. I was swimming in a deep ocean and the sky was violet. At some point, a giant whale with bird wings rose from the waves and spoke to me with deep wisdom..."></textarea>
         <div class="hint-row">
-          <span>* Scrie în orice limbă — analiza și dialogul vor folosi limba ta.</span>
-          <span id="char-count">0 caractere</span>
+          <span>* Write in any language — analysis &amp; dialogue will match your dream's language.</span>
+          <span id="char-count">0 characters</span>
         </div>
 
         <div style="margin-top:24px">
-          <label class="field-label">Ce stare emoțională ai experimentat la trezire?</label>
+          <label class="field-label">What emotional state did you experience upon waking?</label>
           <div class="emotion-row" id="emotion-row">
-            <button type="button" class="emotion-btn" data-emotion="Înfricoșat / Anxios">😨 Înfricoșat / Anxios</button>
-            <button type="button" class="emotion-btn active" data-emotion="Nedumerit / Confuz">🌀 Nedumerit / Confuz</button>
-            <button type="button" class="emotion-btn" data-emotion="Calm / Pace">🕊️ Calm / Pace</button>
-            <button type="button" class="emotion-btn" data-emotion="Euforic / Revelator">🌟 Euforic / Revelator</button>
-            <button type="button" class="emotion-btn" data-emotion="Furios / Tensionat">🔥 Furios / Tensionat</button>
+            <button type="button" class="emotion-btn" data-emotion="Fearful / Anxious">😨 Fearful / Anxious</button>
+            <button type="button" class="emotion-btn active" data-emotion="Puzzled / Confused">🌀 Puzzled / Confused</button>
+            <button type="button" class="emotion-btn" data-emotion="Calm / Peaceful">🕊️ Calm / Peaceful</button>
+            <button type="button" class="emotion-btn" data-emotion="Euphoric / Revelatory">🌟 Euphoric / Revelatory</button>
+            <button type="button" class="emotion-btn" data-emotion="Angry / Tense">🔥 Angry / Tense</button>
           </div>
         </div>
 
         <div id="error-box-container"></div>
 
         <button type="submit" class="submit-btn" id="submit-dream-btn" disabled>
-          <span>Începe Analiza Jungiană</span> →
+          <span>Begin Jungian Analysis</span> →
         </button>
       </form>
 
       <div>
         <div class="card examples-card">
-          <h4>📖 Scenarii Inspiraționale</h4>
-          <p class="lead">Apasă pe un exemplu inspirat din cazuistica analitică jungiană clasică pentru a popula formularul:</p>
+          <h4>📖 Inspirational Scenarios</h4>
+          <p class="lead">Click on an example inspired by classical Jungian analytical casuistry to populate the form:</p>
           <div id="examples-list"></div>
         </div>
         <div class="card method-card">
-          <h4>🧭 Metodologia Analizei</h4>
-          <p>Acest sistem se bazează pe simbolismul universal descris în operele lui Carl Gustav Jung, Marie-Louise von Franz și Edward Edinger. Analiza identifică structurile arhetipale centrale, etapa corespunzătoare pe drumul alchimic și propune scenarii practice de Imaginație Activă.</p>
+          <h4>🧭 Analysis Methodology</h4>
+          <p>This system draws upon the universal symbolism described in the collected works of Carl Gustav Jung, Marie-Louise von Franz, and Edward Edinger. The analysis maps the core archetypal structures, identifies the corresponding stage on the alchemical path, and suggests practical Active Imagination scenarios.</p>
         </div>
       </div>
     </div>
 
     <div class="loading-state" id="loading-state" style="display:none">
       <div class="moon-orb"><div class="ring"></div><div class="core">🌙</div></div>
-      <h3>Distilare Alchimică a Visului</h3>
-      <div class="sub">Decodificăm limbajul arhetipal...</div>
+      <h3>Alchemical Dream Distillation</h3>
+      <div class="sub">Decoding archetypal language...</div>
       <div class="quote-box" id="loading-quote"></div>
-      <div class="loading-foot">ACEST PROCES DUREAZĂ DE OBICEI SUB 15 SECUNDE.</div>
+      <div class="loading-foot">THIS PROCESS GENERALLY TAKES LESS THAN 15 SECONDS.</div>
     </div>
   </section>
 
@@ -367,38 +367,38 @@ let activeEntryId = null;
 let activeEntryAnalysisTab = 'archetypes';
 let isAnalyzing = false;
 let loadingMessage = false;
-let selectedEmotion = 'Nedumerit / Confuz';
+let selectedEmotion = 'Puzzled / Confused';
 
 const DREAM_EXAMPLES = [
-  {tag:"Camera Secretă & Șarpele", text:"Mergeam printr-o casă veche care părea să fie a bunicilor mei, dar am descoperit o ușă secretă în spatele dulapului. Când am intrat, am găsit o cameră imensă plină cu cărți antice și un șarpe smarald care mă privea calm, fără să atace."},
-  {tag:"Urmăritorul cu Mască (Umbra)", text:"Eram urmărit pe străzi întunecate de o siluetă mare, fără față, îmbrăcată într-o mantie neagră. Indiferent cât alergam, silueta era mereu acolo. Când m-am oprit, epuizat, și m-am întors să o înfrunt, am văzut că purta o mască ce-mi amintea de propria mea față."},
-  {tag:"Râul & Ghidul Luminos (Anima)", text:"Încercam să trec un râu foarte tulburat și noroios. De cealaltă parte, o femeie radiantă în veșminte albe mă aștepta, arătându-mi o busolă de aur. Când am sărit în apă, râul s-a transformat brusc în cristal și am putut merge pe el."}
+  {tag:"The Secret Room & The Snake", text:"I was walking in an old house that seemed to belong to my grandparents, but I discovered a secret door behind the wardrobe. When I entered, I found a huge room filled with ancient books and an emerald snake looking at me peacefully, without attacking."},
+  {tag:"The Masked Chaser (The Shadow)", text:"I was being chased through dark streets by a large, faceless shadow figure dressed in a black cloak. No matter how fast I ran, the figure was right there. When I stopped, exhausted, and turned around to confront it, I saw that it wore a mask resembling my own face."},
+  {tag:"The River & The Luminous Guide (Anima)", text:"I was trying to cross a very turbulent and muddy river. On the other side, a radiant woman in white garments was waiting for me, showing me a golden compass. When I jumped into the water, the river suddenly turned into crystal and I could walk on it."}
 ];
 
 const LOADING_QUOTES = [
-  '"Cine privește în afară, visează; cine privește în interior, se trezește." — Carl Gustav Jung',
-  '"Visele sunt scrisori nescrise ale inconștientului care încearcă să compenseze atitudinea conștientă."',
-  'Dizolvăm acum narațiunea visului în vasul alchimic pentru a distila arhetipurile ascunse...',
-  '"Visul este o ușă mică, ascunsă, în cele mai intime și secrete cotloane ale sufletului." — Carl Gustav Jung'
+  '"Who looks outside, dreams; who looks inside, awakes." — Carl Gustav Jung',
+  '"Dreams are unwritten letters of the unconscious that seek to compensate the conscious attitude."',
+  'We are now dissolving the dream narrative in the alchemical vessel to distill the hidden archetypes...',
+  '"The dream is a little hidden door in the innermost and most secret recesses of the soul." — Carl Gustav Jung'
 ];
 
 const STAGE_INFO = {
-  Nigredo: {titlu:"Lucrarea Neagră", nume:"Nigredo (Putrefactio)", simbol:"Confruntarea cu Umbra", icon:"🌙",
-    descriere:"Faza de decompoziție, confuzie și confruntare directă cu aspectele refulate, dureroase sau necunoscute ale sinelui.",
-    semnificatie:"Când visezi scene nocturne, labirinturi, ape poluate, monștri, pierderi, temnițe sau figuri amenințătoare, inconștientul te forțează să privești în propria ta Umbră. Este o etapă indispensabilă: structura vechiului ego se sfărâmă pentru a face loc celei noi.",
-    provocare:"Să nu fugi de frică sau tristețe, ci să înțelegi ce aspect valoros, dar negat, al vieții tale ia această formă umbrită."},
-  Albedo: {titlu:"Lucrarea Albă", nume:"Albedo (Abstinencia)", simbol:"Întâlnirea cu Anima / Animus", icon:"✨",
-    descriere:"Spălarea impurităților, purificarea sufletului și diferențierea dintre ego și arhetipurile de gen contra-sexuale.",
-    semnificatie:"Vise caracterizate de zbor, claritate, zăpadă albă pură, izvoare proaspete sau apariția unui personaj fascinant de sex opus (ghidul tău interior: Anima pentru bărbați, Animus pentru femei). Este trezirea receptivității și capacitatea de a simți fără atașament nevrotic.",
-    provocare:"Să stabilești o relație armonioasă de dialog cu opusul tău interior, integrând intuiția sau raționamentul logic."},
-  Citrinitas: {titlu:"Lucrarea Galbenă", nume:"Citrinitas (Aurifacio)", simbol:"Trezirea Bătrânului Înțelept", icon:"☀️",
-    descriere:"Apariția luminii solare, a conștiinței raționale iluminate și a înțelepciunii transpersonale.",
-    semnificatie:"Etapa în care visele aduc mentori, preoți, animale înțelepte care vorbesc, cărți antice sau o lumină aurie caldă. Este faza maturizării spirituale, în care învățăm să nu mai fim victime ale impulsurilor noastre primitive, ci co-creatori ai destinului nostru.",
-    provocare:"Să folosești această înțelepciune dobândită nu pentru a-ți infla ego-ul cu mândrie (inflație psihică), ci pentru a servi viața practică."},
-  Rubedo: {titlu:"Lucrarea Roșie", nume:"Rubedo (Conjunctio)", simbol:"Realizarea Sinelui", icon:"🏆",
-    descriere:"Conjuncția sacră, întregirea sufletului și întruparea sângelui viu al autocunoașterii.",
-    semnificatie:"Vise cu mandale simetrice perfecte, pietre prețioase rotunde, fructe roșii, nunți mistice sau regi și regine în armonie deplină. Reprezintă integrarea conștientului cu inconștientul, unde ego-ul recunoaște că este doar un satelit în jurul adevăratului centru spiritual, Sinele.",
-    provocare:"Să-ți trăiești pe deplin, conștient și responsabil propria unicitate în lumea de zi cu zi — procesul complet de individuație."}
+  Nigredo: {titlu:"The Black Work", nume:"Nigredo (Putrefactio)", simbol:"Confronting the Shadow", icon:"🌙",
+    descriere:"The phase of decomposition, confusion, and direct confrontation with the repressed, painful, or unknown aspects of the self.",
+    semnificatie:"When dreaming of night scenes, labyrinths, polluted waters, monsters, losses, dungeons, or threatening figures, the unconscious forces you to look into your own Shadow. This is an indispensable stage: the structure of the old ego crumbles to make room for the new.",
+    provocare:"Not to run away from fear or sadness, but to understand what valuable, yet denied aspect of your life is taking this shadow form."},
+  Albedo: {titlu:"The White Work", nume:"Albedo (Abstinencia)", simbol:"Encountering the Anima / Animus", icon:"✨",
+    descriere:"Washing away the impurities, soul purification, and differentiation between the ego and contra-sexual gender archetypes.",
+    semnificatie:"Dreams characterized by flight, clarity, pure white snow, fresh springs, or the appearance of a fascinating character of the opposite sex (your inner guide: Anima for men, Animus for women). It is the awakening of receptivity and the capacity to feel without neurotic attachment.",
+    provocare:"To establish a harmonious relationship of dialogue with your inner opposite, integrating intuition or logical reasoning."},
+  Citrinitas: {titlu:"The Yellow Work", nume:"Citrinitas (Aurifacio)", simbol:"Awakening of the Wise Old Man/Woman", icon:"☀️",
+    descriere:"The emergence of solar light, illuminated rational consciousness, and transpersonal wisdom.",
+    semnificatie:"The stage where dreams bring mentors, priests, speaking wise animals, ancient books, or a warm golden light. It is the phase of spiritual maturation, where we learn not to be mere victims of our primitive impulses, but co-creators of our destiny.",
+    provocare:"To use this acquired wisdom not to inflate your ego with pride (psychic inflation), but to serve practical life."},
+  Rubedo: {titlu:"The Red Work", nume:"Rubedo (Conjunctio)", simbol:"Realization of the Self", icon:"🏆",
+    descriere:"The sacred conjunction, soul completeness, and embodiment of the living blood of self-knowledge.",
+    semnificatie:"Dreams of perfect symmetrical mandalas, round gems, red fruits, mystic weddings, or kings and queens in full harmony. It represents the integration of the conscious with the unconscious, where the ego recognizes that it is only a satellite around the true spiritual center, the Self.",
+    provocare:"Living fully, consciously, and responsibly your own uniqueness in the everyday world — the complete process of individuation."}
 };
 
 /* ============ UTILITIES ============ */
@@ -412,7 +412,7 @@ function escapeHtml(str){
 function formatDate(iso){
   try{
     const d = new Date(iso);
-    return d.toLocaleDateString('ro-RO',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    return d.toLocaleDateString('en-US',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
   }catch(e){ return iso; }
 }
 
@@ -439,7 +439,7 @@ const submitBtn = document.getElementById('submit-dream-btn');
 const charCount = document.getElementById('char-count');
 
 dreamTextEl.addEventListener('input', ()=>{
-  charCount.textContent = dreamTextEl.value.length + ' caractere';
+  charCount.textContent = dreamTextEl.value.length + ' characters';
   submitBtn.disabled = dreamTextEl.value.trim().length < 15;
 });
 
@@ -458,7 +458,7 @@ DREAM_EXAMPLES.forEach(ex=>{
   div.innerHTML = `<span class="tag">${escapeHtml(ex.tag)}</span><p>${escapeHtml(ex.text)}</p>`;
   div.addEventListener('click', ()=>{
     dreamTextEl.value = ex.text;
-    charCount.textContent = ex.text.length + ' caractere';
+    charCount.textContent = ex.text.length + ' characters';
     submitBtn.disabled = false;
     dreamTextEl.scrollIntoView({behavior:'smooth', block:'center'});
   });
@@ -495,7 +495,7 @@ document.getElementById('dream-form').addEventListener('submit', async (e)=>{
       body: JSON.stringify({dreamText:text, emotion:selectedEmotion})
     });
     const data = await res.json();
-    if(!res.ok){ throw new Error(data.error || 'Eroare necunoscută de sistem.'); }
+    if(!res.ok){ throw new Error(data.error || 'Unknown system error.'); }
 
     const newEntry = {
       id: 'dream_' + Date.now(),
@@ -516,12 +516,12 @@ document.getElementById('dream-form').addEventListener('submit', async (e)=>{
 
     // reset form for next time
     dreamTextEl.value = '';
-    charCount.textContent = '0 caractere';
+    charCount.textContent = '0 characters';
     submitBtn.disabled = true;
 
   }catch(err){
     document.getElementById('error-box-container').innerHTML =
-      `<div class="error-box"><strong>A apărut o eroare în interpretare:</strong><br>${escapeHtml(err.message)}</div>`;
+      `<div class="error-box"><strong>An error occurred during interpretation:</strong><br>${escapeHtml(err.message)}</div>`;
   }finally{
     isAnalyzing = false;
     stopLoadingQuotes();
@@ -533,12 +533,12 @@ document.getElementById('dream-form').addEventListener('submit', async (e)=>{
 /* ============ ANALYSIS VIEW ============ */
 function getStageStyle(stage){
   const map = {
-    Nigredo: {label:'Nigredo — Umbră & Dizolvare'},
-    Albedo: {label:'Albedo — Claritate & Anima/Animus'},
-    Citrinitas: {label:'Citrinitas — Trezirea Înțelepciunii'},
-    Rubedo: {label:'Rubedo — Realizarea Sinelui'}
+    Nigredo: {label:'Nigredo — Shadow & Dissolution'},
+    Albedo: {label:'Albedo — Clarity & Anima/Animus'},
+    Citrinitas: {label:'Citrinitas — Wisdom Awakening'},
+    Rubedo: {label:'Rubedo — Realization of the Self'}
   };
-  return map[stage] || {label:'Dezvoltare Arhetipală'};
+  return map[stage] || {label:'Archetypal Development'};
 }
 
 function renderAnalysis(entry){
@@ -549,68 +549,68 @@ function renderAnalysis(entry){
   const archHtml = (a.arhetipuri && a.arhetipuri.length) ? a.arhetipuri.map(arch => `
     <div class="arch-card">
       <span class="arch-name">${escapeHtml(arch.nume)}</span>
-      <h5>Definiție Arhetipală</h5>
+      <h5>Archetypal Definition</h5>
       <p class="desc">${escapeHtml(arch.descriere)}</p>
-      <h5 style="color:var(--gold)">Manifestare în Visul Tău</h5>
+      <h5 style="color:var(--gold)">Manifestation in Your Dream</h5>
       <p class="role">${escapeHtml(arch.rolInVis)}</p>
     </div>
-  `).join('') : '<p style="color:var(--text2);font-size:13px">Nu au fost identificate arhetipuri clare în acest vis. Inconștientul tău se exprimă momentan prin simboluri brute, primare.</p>';
+  `).join('') : '<p style="color:var(--text2);font-size:13px">No clear archetypes were explicitly identified in this dream. Your unconscious is currently expressing itself through raw, primary symbols.</p>';
 
   const symHtml = (a.simboluri && a.simboluri.length) ? a.simboluri.map(sym => `
     <div class="symbol-card">
-      <div><span class="sym-label">Simbol din Vis</span><div class="sym-name">⚜️ ${escapeHtml(sym.simbol)}</div></div>
-      <div><span class="sym-label">Sens Primar / Emoțional</span><p style="font-size:12px;color:#ccc;font-weight:300;line-height:1.6">${escapeHtml(sym.semnificatie)}</p></div>
-      <div class="amp-box"><h6>Amplificare Mitologică & Colectivă</h6><p style="font-size:12px;color:#ddd;font-style:italic;font-family:Georgia,serif;line-height:1.6">${escapeHtml(sym.asocieriJungiene)}</p></div>
+      <div><span class="sym-label">Dream Symbol</span><div class="sym-name">⚜️ ${escapeHtml(sym.simbol)}</div></div>
+      <div><span class="sym-label">Primary / Emotional Meaning</span><p style="font-size:12px;color:#ccc;font-weight:300;line-height:1.6">${escapeHtml(sym.semnificatie)}</p></div>
+      <div class="amp-box"><h6>Collective & Mythological Amplification</h6><p style="font-size:12px;color:#ddd;font-style:italic;font-family:Georgia,serif;line-height:1.6">${escapeHtml(sym.asocieriJungiene)}</p></div>
     </div>
-  `).join('') : '<p style="color:var(--text2);font-size:13px">Nu au fost catalogate simboluri distincte separat. Visul este înțeles ca o scenă interconectată unică.</p>';
+  `).join('') : '<p style="color:var(--text2);font-size:13px">No distinct symbols were cataloged separately. The dream is understood as a single interconnected scene.</p>';
 
   const questionsHtml = (a.intrebariSocratice || []).map(q => `
     <button class="question-btn" data-question="${escapeHtml(q)}">
       <p>"${escapeHtml(q)}"</p>
-      <span class="cta">Răspunde acum →</span>
+      <span class="cta">Respond now →</span>
     </button>
   `).join('');
 
   section.innerHTML = `
     <div class="back-row">
-      <button class="back-btn" id="back-to-prev">← Înapoi la Jurnal</button>
+      <button class="back-btn" id="back-to-prev">← Back to Journal</button>
       <div class="stage-badge">${escapeHtml(style.label)}</div>
     </div>
     <div class="hero-card">
-      <span class="eyebrow-mono">Analiză Arhetipală Distilată</span>
+      <span class="eyebrow-mono">Distilled Archetypal Analysis</span>
       <h2>${escapeHtml(a.titlu)}</h2>
       <p class="summary">"${escapeHtml(a.rezumat)}"</p>
     </div>
     <div class="tabs">
-      <button class="tab-btn active" data-tab="archetypes">🔮 Arhetipuri</button>
-      <button class="tab-btn" data-tab="symbols">🔍 Simboluri & Amplificare</button>
-      <button class="tab-btn" data-tab="integration">🌱 Integrare Psihologică</button>
+      <button class="tab-btn active" data-tab="archetypes">🔮 Archetypes</button>
+      <button class="tab-btn" data-tab="symbols">🔍 Symbols & Amplification</button>
+      <button class="tab-btn" data-tab="integration">🌱 Psychological Integration</button>
     </div>
     <div class="tab-panel active" data-tab-panel="archetypes"><div class="arch-grid">${archHtml}</div></div>
     <div class="tab-panel" data-tab-panel="symbols">${symHtml}</div>
     <div class="tab-panel" data-tab-panel="integration">
       <div class="integration-grid">
         <div class="int-card">
-          <h4>⚖ Echilibru Psihic (Tensiune Compensatorie)</h4>
+          <h4>⚖ Psychic Balance (Compensating Tension)</h4>
           <p class="body">${escapeHtml(a.tensiuniConstientInconstient || a['tensiuniConștientInconștient'] || '')}</p>
-          <div class="footnote">* În viziunea lui Jung, visele ne arată opusul atitudinii noastre conștiente. Dacă ego-ul tău tinde spre control excesiv sau mândrie, visul prezintă o umbră sau o coborâre pentru a restabili umilința și echilibrul.</div>
+          <div class="footnote">* In Jung's view, dreams show us the opposite of our conscious attitude. If your ego tends towards over-control or pride, the dream presents a shadow or descent to restore humility and equilibrium.</div>
         </div>
         <div class="int-card">
-          <h4>🔥 Exercițiu de Imaginație Activă</h4>
+          <h4>🔥 Active Imagination Exercise</h4>
           <p class="body">${escapeHtml(a.scenariuImaginatieActiva || '')}</p>
-          <div class="footnote">* <strong>Cum se practică:</strong> Relaxează-te într-un spațiu liniștit, vizualizează scena indicată și permite personajului sau simbolului să vorbească autonom în conștiința ta, fără să forțezi conștient acțiunea. Notează dialogul în jurnalul tău.</div>
+          <div class="footnote">* <strong>How to perform:</strong> Relax in a quiet space, visualize the indicated scene, and allow the character or symbol to speak autonomously in your awareness without consciously forcing the action. Write down the dialogue in your journal.</div>
         </div>
       </div>
     </div>
     <div class="bridge">
       <div class="bridge-card">
-        <span class="eyebrow">💬 Dialog despre Vis</span>
-        <h3>Continuă-ți Călătoria printr-un Dialog Socratic</h3>
-        <p class="lead">Interpretarea viselor nu se termină cu o analiză statică. Transformă perspectivele în conștientizare vie! Începe o conversație plină de compasiune cu ghidul tău arhetipal. Alege una dintre întrebările de mai jos pentru a începe dialogul:</p>
+        <span class="eyebrow">💬 Dream Dialogue</span>
+        <h3>Continue Your Journey with Socratic Dialogue</h3>
+        <p class="lead">Dream interpretation doesn't stop with a static analysis. Convert insights into living self-awareness! Start a compassionate conversation with your archetypal guide. Choose one of the questions below to begin the dialogue:</p>
         <div class="questions-grid">${questionsHtml}</div>
         <div class="bridge-foot">
-          <p>* Poți discuta atât cât vrei; istoricul dialogului tău va fi păstrat alături de analiză în jurnalul tău.</p>
-          <button class="open-chat-btn" id="open-free-chat-btn"><span>Deschide Dialog Liber</span> →</button>
+          <p>* You can chat for as long as you wish; your dialogue history will be preserved alongside the analysis in your journal.</p>
+          <button class="open-chat-btn" id="open-free-chat-btn"><span>Open Free Dialogue</span> →</button>
         </div>
       </div>
     </div>
@@ -656,27 +656,27 @@ function renderChat(entry){
         <div class="left">
           <button class="chat-back" id="chat-back-btn">←</button>
           <div class="titles">
-            <span>Camera de Analiză</span>
-            <h3>Dialog: ${escapeHtml(a.titlu)}</h3>
+            <span>Analysis Chamber</span>
+            <h3>Dialogue: ${escapeHtml(a.titlu)}</h3>
           </div>
         </div>
-        <div class="live-badge"><div class="live-dot"></div><span>Analist Jungian Activ</span></div>
+        <div class="live-badge"><div class="live-dot"></div><span>Active Jungian Analyst</span></div>
       </div>
       <div class="chat-snapshot">
         <p>CONTEXT: "${escapeHtml(entry.continutVis)}"</p>
-        <span>Etapă: ${escapeHtml(a.etapaAlchimica)}</span>
+        <span>Stage: ${escapeHtml(a.etapaAlchimica)}</span>
       </div>
       <div id="chat-messages"></div>
       <div class="quick-prompts" id="quick-prompts-box">
-        <span>Idei de introspecție rapidă:</span>
+        <span>Selected introspection ideas:</span>
         <div class="row">
-          <button data-q="Cum pot începe exercițiul de Imaginație Activă sugerat?">Cum pot începe exercițiul de Imaginație Activă sugerat?</button>
-          <button data-q="Simt că această Umbră reprezintă o furie ascunsă. Cum o pot integra conștient?">Simt că această Umbră reprezintă furie ascunsă. Cum o integrez?</button>
-          <button data-q="Ce mă învață această etapă alchimică despre starea mea psihică actuală?">Ce mă învață această etapă despre starea mea actuală?</button>
+          <button data-q="How can I begin the suggested Active Imagination exercise?">How can I begin the suggested Active Imagination exercise?</button>
+          <button data-q="I feel this Shadow represents hidden anger. How can I consciously integrate it?">I feel this Shadow represents hidden anger. How can I integrate it?</button>
+          <button data-q="What does this alchemical stage teach me about my current psychic state?">What does this stage teach me about my current state?</button>
         </div>
       </div>
       <form class="chat-form" id="chat-form">
-        <input type="text" id="chat-input" placeholder="Scrie răspunsul sau reflecția ta aici..." required>
+        <input type="text" id="chat-input" placeholder="Write your response or reflection here..." required>
         <button type="submit" id="chat-send-btn">→</button>
       </form>
     </div>
@@ -705,8 +705,8 @@ function renderChatMessages(entry){
     container.innerHTML = `
       <div class="chat-empty">
         <div class="icon">💬</div>
-        <h4>Tăcere în Inconștient</h4>
-        <p>Lucrul cu visul începe prin dialog. Răspunde la întrebările de mai sus sau partajează-ți asociațiile legate de orice animal, figură sau emoție prezentă în acest vis.</p>
+        <h4>Stillness in the Unconscious</h4>
+        <p>Dream work begins with dialogue. Answer the questions above or share your associations regarding any animal, figure, or emotion present in this dream.</p>
       </div>`;
     return;
   }
@@ -715,7 +715,7 @@ function renderChatMessages(entry){
     const isModel = msg.role === 'model';
     html += `
       <div class="msg ${isModel ? '' : 'user'}">
-        <div class="avatar ${isModel ? 'model' : 'user'}">${isModel ? 'CG' : 'EU'}</div>
+        <div class="avatar ${isModel ? 'model' : 'user'}">${isModel ? 'CG' : 'ME'}</div>
         <div>
           <div class="bubble ${isModel ? 'model' : 'user'}">${escapeHtml(msg.text)}</div>
           <div class="msg-time">${escapeHtml(msg.timestamp)}</div>
@@ -726,7 +726,7 @@ function renderChatMessages(entry){
     html += `
       <div class="typing">
         <div class="avatar model">CG</div>
-        <div class="bubble model"><span style="font-size:11px;color:var(--text2);font-style:italic">Analistul reflectează asupra asociațiilor tale...</span><div class="dots"><span></span><span></span><span></span></div></div>
+        <div class="bubble model"><span style="font-size:11px;color:var(--text2);font-style:italic">The analyst is reflecting on your associations...</span><div class="dots"><span></span><span></span><span></span></div></div>
       </div>`;
   }
   container.innerHTML = html;
@@ -734,7 +734,7 @@ function renderChatMessages(entry){
 }
 
 async function sendMessage(entry, text){
-  const userMsg = {id:'msg_u_'+Date.now(), role:'user', text, timestamp:new Date().toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})};
+  const userMsg = {id:'msg_u_'+Date.now(), role:'user', text, timestamp:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})};
   entry.chatHistory.push(userMsg);
   loadingMessage = true;
   renderChatMessages(entry);
@@ -754,11 +754,11 @@ async function sendMessage(entry, text){
       })
     });
     const data = await res.json();
-    if(!res.ok) throw new Error(data.error || 'Eroare la obținerea răspunsului.');
+    if(!res.ok) throw new Error(data.error || 'Error obtaining reply.');
 
-    entry.chatHistory.push({id:'msg_m_'+Date.now(), role:'model', text:data.text, timestamp:new Date().toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})});
+    entry.chatHistory.push({id:'msg_m_'+Date.now(), role:'model', text:data.text, timestamp:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})});
   }catch(err){
-    entry.chatHistory.push({id:'msg_e_'+Date.now(), role:'model', text:'Sistemul este momentan supraîncărcat sau cheia de securitate nu este configurată corect. Te rog reîncearcă dialogul în câteva momente.', timestamp:new Date().toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})});
+    entry.chatHistory.push({id:'msg_e_'+Date.now(), role:'model', text:'The system is currently overloaded or the security key is not properly configured. Please retry the dialogue in a few moments.', timestamp:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})});
   }finally{
     loadingMessage = false;
     saveJournal();
@@ -774,8 +774,8 @@ function renderJournal(){
     section.innerHTML = `
       <div class="empty-journal">
         <div class="icon">📖</div>
-        <h3>Compendiul Tău este Gol</h3>
-        <p>Nu ai salvat încă niciun vis în arhiva ta personală. Revino la ecranul de înregistrare, notează-ți visul, rulează analiza și salvează-l pentru a începe să-ți cartografiezi peisajul inconștient și tiparele arhetipale.</p>
+        <h3>Your Compendium is Empty</h3>
+        <p>You haven't saved any dreams to your personal archive yet. Return to the entry screen, record your dream, run the analysis, and save it to begin mapping your unconscious landscape and archetypal patterns.</p>
       </div>`;
     return;
   }
@@ -800,16 +800,16 @@ function renderJournal(){
   const entriesHtml = entries.map(entry=>`
     <div class="entry-card">
       <div class="entry-meta">
-        <span>📅 ${formatDate(entry.data)} &nbsp;•&nbsp; Emoție: ${escapeHtml(entry.stareEmotionala)}</span>
+        <span>📅 ${formatDate(entry.data)} &nbsp;•&nbsp; Emotion: ${escapeHtml(entry.stareEmotionala)}</span>
         <div style="display:flex;align-items:center;gap:8px">
           ${entry.analiza ? `<span class="badge">${escapeHtml(entry.analiza.etapaAlchimica)}</span>` : ''}
           <button class="del-btn" data-id="${entry.id}">🗑</button>
         </div>
       </div>
-      <div class="entry-title" data-id="${entry.id}">${entry.analiza ? escapeHtml(entry.analiza.titlu) : 'Așteaptă interpretare...'}</div>
+      <div class="entry-title" data-id="${entry.id}">${entry.analiza ? escapeHtml(entry.analiza.titlu) : 'Awaiting interpretation...'}</div>
       <p class="entry-preview" data-id="${entry.id}">${escapeHtml(entry.continutVis)}</p>
       <div class="entry-actions">
-        <button class="explore-btn" data-id="${entry.id}">Explorează Interpretarea →</button>
+        <button class="explore-btn" data-id="${entry.id}">Explore Interpretation →</button>
       </div>
     </div>
   `).join('');
@@ -817,16 +817,16 @@ function renderJournal(){
   const archBarsHtml = sortedArch.length > 0 ? sortedArch.map(([name,count])=>{
     const pct = Math.min(100, (count/totalDreams)*100);
     return `<div class="arch-bar-row"><div class="top"><span class="name">${escapeHtml(name)}</span><span class="count">${count}x</span></div><div class="bar"><div class="bar-fill" style="width:${pct}%"></div></div></div>`;
-  }).join('') : '<p style="font-size:11px;color:var(--text3);font-style:italic">Înregistrează și analizează vise pentru perspective arhetipale.</p>';
+  }).join('') : '<p style="font-size:11px;color:var(--text3);font-style:italic">Record and analyze dreams to generate archetypal insights.</p>';
 
   section.innerHTML = `
     <div class="stats-row">
       <div class="stat-card">
         <div class="icon-box">📖</div>
-        <div><div class="num">${totalDreams} ${totalDreams===1?'Vis':'Vise'}</div><div class="label">Total Vise Înregistrate</div></div>
+        <div><div class="num">${totalDreams} ${totalDreams===1?'Dream':'Dreams'}</div><div class="label">Total Registered Dreams</div></div>
       </div>
       <div class="stage-dist">
-        <span>Distribuție pe Drumul Alchimic</span>
+        <span>Distribution Across the Alchemical Path</span>
         <div class="stage-grid">${stageGridHtml}</div>
       </div>
     </div>
@@ -834,13 +834,13 @@ function renderJournal(){
       <div>${entriesHtml}</div>
       <div>
         <div class="sidebar-card">
-          <h4>Arhetipurile Tale</h4>
-          <p class="lead">Aceste figuri simbolice apar repetat pentru a te ghida. Cu cât frecvența unui arhetip este mai mare, cu atât inconștientul tău caută mai urgent integrarea acelei forțe psihice.</p>
+          <h4>Your Archetypes</h4>
+          <p class="lead">These symbolic figures appear repeatedly to guide you. The higher the frequency of an archetype, the more urgently your unconscious seeks the integration of that psychical force.</p>
           ${archBarsHtml}
         </div>
         <div class="advice-card">
-          <h5>📈 Sfat de Individuație</h5>
-          <p>Procesul de individuație este o căutare pe tot parcursul vieții pentru întregire. Umbrele și fricile din vise sunt cruciale. Dacă observi faze frecvente de <strong style="color:var(--gold)">Nigredo</strong>, apreciază coborârea: dizolvi tipare vechi de falsă siguranță pentru a experimenta o renaștere spirituală!</p>
+          <h5>📈 Individuation Advice</h5>
+          <p>The individuation process is a lifelong quest for wholeness. Dream shadows and fears are crucial. If you see frequent <strong style="color:var(--gold)">Nigredo</strong> phases, appreciate the descent: you are dissolving outdated ego patterns of false security to experience a spiritual rebirth!</p>
         </div>
       </div>
     </div>
@@ -876,7 +876,7 @@ function renderPath(currentStage){
     const isActive = id === stage;
     return `
       <div class="stage-card ${isActive?'active':''}" data-stage="${id}">
-        ${isActive ? '<span class="your-badge">Etapa Ta</span>' : ''}
+        ${isActive ? '<span class="your-badge">Your Stage</span>' : ''}
         <div class="icon-circle">${info.icon}</div>
         <div class="sid">${id}</div>
         <div class="stitle">${info.titlu}</div>
@@ -885,8 +885,8 @@ function renderPath(currentStage){
 
   section.innerHTML = `
     <div class="path-intro">
-      <h2>Drumul Alchimic al Individuației</h2>
-      <p>Carl Jung a descoperit că visele noastre folosesc același limbaj simbolic ca alchimiștii medievali, în efortul lor de a transforma materia brută în aur spiritual. Această evoluție reprezintă procesul tău de integrare psihică.</p>
+      <h2>The Alchemical Path of Individuation</h2>
+      <p>Carl Jung discovered that our dreams use the same symbolic language as medieval alchemists in their effort to transform raw matter into spiritual gold. This evolution represents your process of psychic integration.</p>
     </div>
     <div class="stage-stepper">${stepperHtml}</div>
     <div class="stage-detail" id="stage-detail-box"></div>
@@ -908,13 +908,13 @@ function renderStageDetail(stageId){
     </div>
     <div class="stage-detail-grid">
       <div>
-        <div class="stage-mini-card"><h5>Stare Inconștientă Primară</h5><p>${escapeHtml(info.descriere)}</p></div>
-        <div class="stage-mini-card gold"><h5>🧭 Provocare Evolutivă</h5><p>${escapeHtml(info.provocare)}</p></div>
+        <div class="stage-mini-card"><h5>Primary Unconscious State</h5><p>${escapeHtml(info.descriere)}</p></div>
+        <div class="stage-mini-card gold"><h5>🧭 Evolutionary Challenge</h5><p>${escapeHtml(info.provocare)}</p></div>
       </div>
       <div class="stage-meaning-box">
-        <h5>Semnificație în Lumea Onirică (Amplificare Jungiană)</h5>
+        <h5>Meaning in the Dream World (Jungian Amplification)</h5>
         <p class="meaning">${escapeHtml(info.semnificatie)}</p>
-        <p class="note">*Notă: Fiecare vis reprezintă un proces viu. Călătoria prin aceste etape nu e o linie dreaptă, ci o spirală divină, unde ne întoarcem des la Nigredo pentru a dizolva reziduuri vechi, apoi ne ridicăm spre un Rubedo superior.</p>
+        <p class="note">*Note: Every dream represents a living process. Journeying through these stages is not a straight line, but a divine spiral, where we often return to Nigredo to dissolve old residues, then rise to a higher Rubedo.</p>
       </div>
     </div>
   `;
