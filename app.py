@@ -139,6 +139,11 @@ def index():
     return render_template("dreammirror.html")
 
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
 @app.route("/api/analyze-dream", methods=["POST"])
 def analyze_dream():
     data = request.get_json(silent=True) or {}
