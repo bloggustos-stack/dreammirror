@@ -511,7 +511,7 @@ document.getElementById('dream-form').addEventListener('submit', async (e)=>{
     saveJournal();
     activeEntryId = newEntry.id;
     activeEntryAnalysisTab = 'archetypes';
-    renderAnalysis(newEntry);
+    renderChoiceScreen(newEntry);
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
     document.getElementById('section-analysis').classList.add('active');
 
@@ -530,6 +530,76 @@ document.getElementById('dream-form').addEventListener('submit', async (e)=>{
     document.querySelector('.grid-12').style.display = 'grid';
   }
 });
+
+/* ============ CHOICE SCREEN (after analysis) ============ */
+function renderChoiceScreen(entry){
+  const section = document.getElementById('section-analysis');
+  const a = entry.analiza;
+  section.innerHTML = `
+    <div style="max-width:560px;margin:40px auto;text-align:center">
+      <div style="font-size:40px;margin-bottom:20px">🌙</div>
+      <h2 style="font-family:var(--font-display);font-size:24px;color:var(--gold);margin-bottom:14px">Your dream has been analyzed</h2>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:36px;font-weight:300">"${escapeHtml(a.titlu)}" — what would you like to do next?</p>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:14px">
+        <button id="choice-understand-btn" style="text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px 22px;cursor:pointer;transition:all .2s">
+          <div style="font-family:var(--font-display);font-size:16px;color:#eee;margin-bottom:6px">🔍 I want to explore this myself</div>
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.5">See the full archetypal analysis, symbols, and start a reflective dialogue with the analyst.</div>
+        </button>
+
+        <button id="choice-therapist-btn" style="text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px 22px;cursor:pointer;transition:all .2s">
+          <div style="font-family:var(--font-display);font-size:16px;color:#eee;margin-bottom:6px">📄 Just send this to my therapist</div>
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.5">Skip the details — get a clinical-style report ready to download and share, no jargon required.</div>
+        </button>
+      </div>
+
+      <div style="margin-top:28px">
+        <button id="choice-back-btn" style="background:none;border:none;color:var(--text3);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer">← Back to Journal</button>
+      </div>
+    </div>
+  `;
+
+  section.querySelectorAll('#choice-understand-btn, #choice-therapist-btn').forEach(btn=>{
+    btn.addEventListener('mouseenter', ()=> btn.style.borderColor = 'rgba(197,179,88,.4)');
+    btn.addEventListener('mouseleave', ()=> btn.style.borderColor = 'var(--border)');
+  });
+
+  section.querySelector('#choice-understand-btn').addEventListener('click', ()=> renderAnalysis(entry));
+  section.querySelector('#choice-therapist-btn').addEventListener('click', ()=> renderTherapistHandoff(entry));
+  section.querySelector('#choice-back-btn').addEventListener('click', ()=>{
+    activeEntryId = null;
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector('.nav-btn[data-section="journal"]').classList.add('active');
+    showSection('journal');
+  });
+}
+
+/* ============ THERAPIST HANDOFF (simple confirmation) ============ */
+function renderTherapistHandoff(entry){
+  const section = document.getElementById('section-analysis');
+  section.innerHTML = `
+    <div style="max-width:480px;margin:60px auto;text-align:center">
+      <div style="font-size:40px;margin-bottom:20px">✅</div>
+      <h2 style="font-family:var(--font-display);font-size:22px;color:var(--gold);margin-bottom:14px">Your report is ready</h2>
+      <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:8px;font-weight:300">A clear, clinical-style summary of your dream has been prepared — no need to read it yourself if you'd rather not.</p>
+      <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:32px;font-weight:300">Download or print it below, then share it with your therapist however works best for you (email, in person, or your clinic's patient portal).</p>
+
+      <button id="download-report-btn" style="background:var(--gold);color:#0a0a0a;border:none;border-radius:12px;padding:14px 28px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.12em;cursor:pointer;display:inline-flex;align-items:center;gap:10px;margin-bottom:24px">📄 Download Report</button>
+
+      <div>
+        <button id="handoff-back-btn" style="background:none;border:none;color:var(--text3);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer">← Back to Journal</button>
+      </div>
+    </div>
+  `;
+
+  section.querySelector('#download-report-btn').addEventListener('click', ()=> exportForTherapist(entry));
+  section.querySelector('#handoff-back-btn').addEventListener('click', ()=>{
+    activeEntryId = null;
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector('.nav-btn[data-section="journal"]').classList.add('active');
+    showSection('journal');
+  });
+}
 
 /* ============ ANALYSIS VIEW ============ */
 function getStageStyle(stage){
