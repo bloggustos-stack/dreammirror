@@ -1068,9 +1068,256 @@ function renderStageDetail(stageId){
   `;
 }
 
+/* ============ ONBOARDING ============ */
+function renderOnboarding(){
+  const section = document.getElementById('section-new-dream');
+  section.innerHTML = `
+    <div id="onboarding-wrap" style="max-width:520px;margin:60px auto;text-align:center">
+      <div style="font-size:40px;margin-bottom:20px">🌙</div>
+      <div id="onboarding-step"></div>
+    </div>
+  `;
+  showStep(0, {});
+}
+
+const ONBOARDING_STEPS = [
+  {
+    question: "What brings you here tonight?",
+    options: [
+      {icon:"💭", label:"I had a dream I can't stop thinking about", value:"recurring"},
+      {icon:"🔄", label:"I want to understand my recurring dreams", value:"pattern"},
+      {icon:"🩺", label:"I'm working with a therapist and want to go deeper", value:"therapy"},
+      {icon:"📚", label:"I'm curious about Jungian psychology", value:"curious"}
+    ]
+  },
+  {
+    question: "How familiar are you with dream analysis?",
+    options: [
+      {icon:"🌱", label:"This is completely new to me", value:"new"},
+      {icon:"🌿", label:"I know a little about Jung and archetypes", value:"some"},
+      {icon:"🌳", label:"I've been exploring this for a while", value:"experienced"}
+    ]
+  },
+  {
+    question: "What would you like to do first?",
+    options: [
+      {icon:"✍️", label:"Analyze a dream I had recently", value:"analyze"},
+      {icon:"☀️", label:"Learn about the alchemical stages", value:"learn"},
+      {icon:"🔮", label:"Explore the archetypes", value:"archetypes"}
+    ]
+  }
+];
+
+function showStep(stepIdx, answers){
+  const stepEl = document.getElementById('onboarding-step');
+  if(stepIdx >= ONBOARDING_STEPS.length){
+    // Salveaza raspunsurile si arata aplicatia
+    localStorage.setItem('dreammirror_onboarded', JSON.stringify(answers));
+    renderMainApp(answers);
+    return;
+  }
+
+  const step = ONBOARDING_STEPS[stepIdx];
+  const progress = `${stepIdx + 1} / ${ONBOARDING_STEPS.length}`;
+
+  stepEl.innerHTML = `
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:24px">${progress}</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(20px,3vw,28px);color:#eee;margin-bottom:32px;font-weight:500;line-height:1.3">${step.question}</h2>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      ${step.options.map(opt => `
+        <button onclick="chooseOption(${stepIdx}, '${opt.value}', ${JSON.stringify(answers).replace(/"/g,'&quot;')})"
+          style="display:flex;align-items:center;gap:14px;text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px 20px;cursor:pointer;transition:all .2s;width:100%"
+          onmouseover="this.style.borderColor='rgba(197,179,88,.4)';this.style.background='rgba(197,179,88,0.05)'"
+          onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--bg2)'">
+          <span style="font-size:22px">${opt.icon}</span>
+          <span style="font-size:13px;color:#ddd;font-weight:300;line-height:1.4">${opt.label}</span>
+        </button>
+      `).join('')}
+    </div>
+    ${stepIdx > 0 ? `<button onclick="showStep(${stepIdx-1}, ${JSON.stringify(answers).replace(/"/g,'&quot;')})" style="margin-top:20px;background:none;border:none;color:var(--text3);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer">← Back</button>` : ''}
+  `;
+}
+
+function chooseOption(stepIdx, value, answers){
+  const stepKey = ['purpose','familiarity','action'][stepIdx];
+  const newAnswers = {...answers, [stepKey]: value};
+  showStep(stepIdx + 1, newAnswers);
+}
+
+function renderMainApp(answers){
+  const section = document.getElementById('section-new-dream');
+
+  // Mesaj personalizat in functie de raspunsuri
+  let welcomeMsg = "Describe your dream with as many details as you can recall (landscapes, colors, physical sensations, or spoken words). Our analyst, trained in Carl Gustav Jung's analytical psychology, will guide you to explore their deep archetypal significance.";
+  if(answers.familiarity === 'new'){
+    welcomeMsg = "Welcome! No prior knowledge needed — just describe your dream as you remember it, in any language. We'll guide you through the rest, step by step.";
+  } else if(answers.purpose === 'therapy'){
+    welcomeMsg = "Describe your dream in detail. After analysis, you'll be able to download a clinical-style report to share with your therapist.";
+  }
+
+  // Daca a ales 'learn', ducem direct la Alchemical Path
+  if(answers.action === 'learn'){
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector('.nav-btn[data-section="path"]').classList.add('active');
+    showSection('path');
+    return;
+  }
+  // Daca a ales 'archetypes', ducem la Archetype Academy
+  if(answers.action === 'archetypes'){
+    section.innerHTML = `
+      <div style="max-width:480px;margin:60px auto;text-align:center">
+        <div style="font-size:40px;margin-bottom:20px">🔮</div>
+        <h2 style="font-family:var(--font-display);font-size:24px;color:var(--gold);margin-bottom:14px">Explore the Archetypes</h2>
+        <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:28px;font-weight:300">Discover the 12 universal patterns of the psyche on Archetype Academy — our companion site dedicated to Jungian archetypes.</p>
+        <a href="https://archetype-academy.org" target="_blank" style="display:inline-block;background:var(--gold);color:#0a0a0a;border-radius:12px;padding:14px 28px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.12em;text-decoration:none;margin-bottom:20px">Visit Archetype Academy →</a>
+        <div><button onclick="renderMainApp({...${JSON.stringify(answers)}, action:'analyze'})" style="background:none;border:none;color:var(--text3);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer">Or analyze a dream instead →</button></div>
+      </div>
+    `;
+    return;
+  }
+
+  // Default: afiseaza formularul normal
+  section.innerHTML = `
+    <div class="intro">
+      <span class="eyebrow">✨ Wisdom of the Personal Unconscious</span>
+      <h2>Decipher Your Dreams</h2>
+      <p>${welcomeMsg}</p>
+    </div>
+    <div class="grid-12">
+      <form class="card" id="dream-form">
+        <label class="field-label">Describe your dream narrative</label>
+        <textarea id="dream-text" placeholder="e.g. I was swimming in a deep ocean and the sky was violet. At some point, a giant whale with bird wings rose from the waves and spoke to me with deep wisdom..."></textarea>
+        <div class="hint-row">
+          <span>* Write in any language — analysis &amp; dialogue will match your dream's language.</span>
+          <span id="char-count">0 characters</span>
+        </div>
+        <div style="margin-top:24px">
+          <label class="field-label">What emotional state did you experience upon waking?</label>
+          <div class="emotion-row" id="emotion-row">
+            <button type="button" class="emotion-btn" data-emotion="Fearful / Anxious">😨 Fearful / Anxious</button>
+            <button type="button" class="emotion-btn active" data-emotion="Puzzled / Confused">🌀 Puzzled / Confused</button>
+            <button type="button" class="emotion-btn" data-emotion="Calm / Peaceful">🕊️ Calm / Peaceful</button>
+            <button type="button" class="emotion-btn" data-emotion="Euphoric / Revelatory">🌟 Euphoric / Revelatory</button>
+            <button type="button" class="emotion-btn" data-emotion="Angry / Tense">🔥 Angry / Tense</button>
+          </div>
+        </div>
+        <div id="error-box-container"></div>
+        <button type="submit" class="submit-btn" id="submit-dream-btn" disabled>
+          <span>Begin Jungian Analysis</span> →
+        </button>
+      </form>
+      <div>
+        <div class="card examples-card">
+          <h4>📖 Inspirational Scenarios</h4>
+          <p class="lead">Click on an example inspired by classical Jungian analytical casuistry to populate the form:</p>
+          <div id="examples-list"></div>
+        </div>
+        <div class="card method-card">
+          <h4>🧭 Analysis Methodology</h4>
+          <p>This system draws upon the universal symbolism described in the collected works of Carl Gustav Jung, Marie-Louise von Franz, and Edward Edinger.</p>
+        </div>
+      </div>
+    </div>
+    <div class="loading-state" id="loading-state" style="display:none">
+      <div class="moon-orb"><div class="ring"></div><div class="core">🌙</div></div>
+      <h3>Alchemical Dream Distillation</h3>
+      <div class="sub">Decoding archetypal language...</div>
+      <div class="quote-box" id="loading-quote"></div>
+      <div class="loading-foot">THIS PROCESS GENERALLY TAKES LESS THAN 15 SECONDS.</div>
+    </div>
+  `;
+  initDreamForm();
+  initExamples();
+}
+
+function initDreamForm(){
+  const dreamTextEl = document.getElementById('dream-text');
+  const submitBtn = document.getElementById('submit-dream-btn');
+  const charCount = document.getElementById('char-count');
+  if(!dreamTextEl) return;
+
+  dreamTextEl.addEventListener('input', ()=>{
+    charCount.textContent = dreamTextEl.value.length + ' characters';
+    submitBtn.disabled = dreamTextEl.value.trim().length < 15;
+  });
+
+  document.querySelectorAll('.emotion-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.emotion-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedEmotion = btn.dataset.emotion;
+    });
+  });
+
+  document.getElementById('dream-form').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const text = dreamTextEl.value.trim();
+    if(text.length < 15 || isAnalyzing) return;
+    isAnalyzing = true;
+    document.getElementById('error-box-container').innerHTML = '';
+    document.querySelector('.grid-12').style.display = 'none';
+    document.getElementById('loading-state').style.display = 'flex';
+    startLoadingQuotes();
+    try{
+      const res = await fetch('/api/analyze-dream', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({dreamText:text, emotion:selectedEmotion})
+      });
+      const data = await res.json();
+      if(!res.ok){ throw new Error(data.error || 'Unknown system error.'); }
+      const newEntry = {
+        id: 'dream_' + Date.now(), data: new Date().toISOString(),
+        continutVis: text, stareEmotionala: selectedEmotion,
+        analiza: data, chatHistory: [], notePersonale: ""
+      };
+      entries.unshift(newEntry);
+      saveJournal();
+      activeEntryId = newEntry.id;
+      renderChoiceScreen(newEntry);
+      document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+      document.getElementById('section-analysis').classList.add('active');
+      dreamTextEl.value = '';
+      charCount.textContent = '0 characters';
+      submitBtn.disabled = true;
+    }catch(err){
+      document.getElementById('error-box-container').innerHTML =
+        `<div class="error-box"><strong>An error occurred:</strong><br>${escapeHtml(err.message)}</div>`;
+    }finally{
+      isAnalyzing = false;
+      stopLoadingQuotes();
+      document.getElementById('loading-state').style.display = 'none';
+      document.querySelector('.grid-12').style.display = 'grid';
+    }
+  });
+}
+
+function initExamples(){
+  const examplesList = document.getElementById('examples-list');
+  if(!examplesList) return;
+  DREAM_EXAMPLES.forEach(ex=>{
+    const div = document.createElement('div');
+    div.className = 'example-item';
+    div.innerHTML = `<span class="tag">${escapeHtml(ex.tag)}</span><p>${escapeHtml(ex.text)}</p>`;
+    div.addEventListener('click', ()=>{
+      const dreamTextEl = document.getElementById('dream-text');
+      const charCount = document.getElementById('char-count');
+      const submitBtn = document.getElementById('submit-dream-btn');
+      dreamTextEl.value = ex.text;
+      charCount.textContent = ex.text.length + ' characters';
+      submitBtn.disabled = false;
+      dreamTextEl.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+    examplesList.appendChild(div);
+  });
+}
+
 /* ============ INIT ============ */
-startLoadingQuotes();
-stopLoadingQuotes();
+const alreadyOnboarded = localStorage.getItem('dreammirror_onboarded');
+if(alreadyOnboarded){
+  renderMainApp(JSON.parse(alreadyOnboarded));
+} else {
+  renderOnboarding();
+}
 </script>
 </body>
 </html>
